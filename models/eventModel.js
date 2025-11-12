@@ -1,56 +1,61 @@
 // models/eventModel.js
-const { Low } = require('lowdb');
-const { JSONFile } = require('lowdb/node');
-const { nanoid } = require('nanoid');
+// ---------------------------------------------------
+// simple CRUD operations using a placeholder array
+// ---------------------------------------------------
 
-// JSON database file
-const db = new Low(new JSONFile('./data/listings.json'), { listings: [] });
+// Placeholder array to hold events
+let events = [
+  {
+    id: 1,
+    title: 'Campus Cleanup Drive',
+    date: '2025-11-20',
+    time: '10:00 AM',
+    description: 'A volunteer event to clean up the quad area.',
+  },
+];
 
-// Get all listings
-async function getAll() {
-  await db.read();
-  return db.data.listings;
+// Utility to generate the next unique ID
+const nextId = () => (events.length ? Math.max(...events.map(e => e.id)) + 1 : 1);
+
+// --- CRUD Functions ---
+
+// CREATE a new event
+function createEvent(title, date, time, description) {
+  const newEvent = { id: nextId(), title, date, time, description };
+  events.push(newEvent);
+  return newEvent;
 }
 
-// Create new listing
-async function create(data) {
-  await db.read();
-  const newListing = {
-    id: nanoid(6),
-    title: data.title,
-    description: data.description,
-    date: data.date,
-    location: data.location,
-    status: data.status // "Lost" or "Found"
-  };
-  db.data.listings.push(newListing);
-  await db.write();
-  return newListing;
+// READ all events
+function getAllEvents() {
+  return events;
 }
 
-// Get listing by ID
-async function getById(id) {
-  await db.read();
-  return db.data.listings.find(item => item.id === id);
+// READ one event by ID
+function getEventById(id) {
+  return events.find(e => e.id === Number(id));
 }
 
-// Update listing
-async function update(id, updatedData) {
-  await db.read();
-  const index = db.data.listings.findIndex(item => item.id === id);
-  if (index !== -1) {
-    db.data.listings[index] = { id, ...updatedData };
-    await db.write();
-    return db.data.listings[index];
-  }
-  return null;
+// UPDATE an existing event
+function updateEvent(id, updatedData) {
+  const idx = events.findIndex(e => e.id === Number(id));
+  if (idx === -1) return null;
+  events[idx] = { ...events[idx], ...updatedData, id: Number(id) };
+  return events[idx];
 }
 
- // Delete listing
-async function remove(id) {
-  await db.read();
-  db.data.listings = db.data.listings.filter(item => item.id !== id);
-  await db.write();
+// DELETE an event
+function deleteEvent(id) {
+  const before = events.length;
+  events = events.filter(e => e.id !== Number(id));
+  return events.length < before;
 }
 
-module.exports = { getAll, create, getById, update, remove };
+// --- Export all functions ---
+module.exports = {
+  createEvent,
+  getAllEvents,
+  getEventById,
+  updateEvent,
+  deleteEvent,
+};
