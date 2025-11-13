@@ -7,10 +7,10 @@
 let events = [
   {
     id: 1,
-    title: 'Campus Cleanup Drive',
+    title: 'Laptop Charger',
     date: '2025-11-20',
     time: '10:00 AM',
-    description: 'A volunteer event to clean up the quad area.',
+    description: 'A charger for a laptop found in the library.',
   },
 ];
 
