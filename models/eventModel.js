@@ -14,7 +14,7 @@ let events = [
   },
 ];
 
-// Utility to generate the next unique ID
+// Used to generate the next unique ID
 const nextId = () => (events.length ? Math.max(...events.map(e => e.id)) + 1 : 1);
 
 // --- CRUD Functions ---
