@@ -31,9 +31,9 @@ function getAllEvents() {
   return events;
 }
 
-// READ one event by ID
-function getEventById(id) {
-  return events.find(e => e.id === Number(id));
+// READ one event by title (case-insensitive)
+function getEventByTitle(title) {
+  return events.find(e => e.title.toLowerCase() === title.toLowerCase());
 }
 
 // UPDATE an existing event
