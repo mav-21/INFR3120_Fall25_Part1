@@ -55,7 +55,7 @@ function deleteEvent(id) {
 module.exports = {
   createEvent,
   getAllEvents,
-  getEventById,
+  getEventByTitle,
   updateEvent,
   deleteEvent,
 };
