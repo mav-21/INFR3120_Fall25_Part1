@@ -1,0 +1,42 @@
+<section style="padding:20px;background:#f7f7f7;border-radius:8px;"> <!-- hero box for quick intro -->
+  <h2 style="margin-top:0;">Find or report lost items on campus</h2> <!-- hero title -->
+  <p>Click the button below to create a new listing.</p> <!-- short helper text -->
+  <p>
+    <a href="/items/new" style="padding:10px 14px;border:1px solid #333;border-radius:6px;text-decoration:none;display:inline-block;">
+      Create New Listing
+    </a> <!-- hero call-to-action button linking to form -->
+  </p>
+</section> <!-- end hero -->
+
+<h3 style="margin:24px 0 12px;">Active Listings</h3> <!-- heading above table -->
+
+<table border="1" cellpadding="6" cellspacing="0" style="width:100%;border-collapse:collapse;"> <!-- simple full-width table -->
+  <thead> <!-- table header -->
+    <tr> <!-- header row -->
+      <th>Name</th> <!-- item name column -->
+      <th>Description</th> <!-- item description column -->
+      <th>Date</th> <!-- date item was lost/found -->
+      <th>Location</th> <!-- place where it was lost/found -->
+      <th>Type</th> <!-- Lost or Found -->
+      <th>Actions</th> <!-- edit/delete buttons -->
+    </tr> <!-- end header row -->
+  </thead> <!-- end thead -->
+
+  <tbody> <!-- table body with data rows -->
+    <% items.forEach(i => { %> <!-- EJS loop over items array passed from app.js -->
+      <tr> <!-- data row for each item -->
+        <td><%= i.name %></td> <!-- display item name -->
+        <td><%= i.desc %></td> <!-- display item description -->
+        <td><%= i.date %></td> <!-- display item date -->
+        <td><%= i.place %></td> <!-- display item location -->
+        <td><%= i.type %></td> <!-- display Lost/Found -->
+        <td> <!-- actions cell -->
+          <a href="/items/<%= i.id %>/edit">Edit</a> <!-- link to edit form for this item -->
+          <form action="/items/<%= i.id %>?_method=DELETE" method="post" style="display:inline;margin-left:6px;"> <!-- form that sends a DELETE via method-override -->
+            <button type="submit">Delete</button> <!-- delete button -->
+          </form> <!-- end delete form -->
+        </td> <!-- end actions -->
+      </tr> <!-- end row -->
+    <% }) %> <!-- end EJS loop -->
+  </tbody> <!-- end tbody -->
+</table> <!-- end table -->

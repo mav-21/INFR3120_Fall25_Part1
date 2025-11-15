@@ -1,0 +1,27 @@
+<!DOCTYPE html> <!-- standard HTML5 doctype -->
+<html lang="en"> <!-- set page language for accessibility/SEO -->
+<head> <!-- document head metadata -->
+  <meta charset="UTF-8"> <!-- character encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- responsive scaling on mobile -->
+  <title>Lost &amp; Found Hub</title> <!-- site title shown in browser tab -->
+  <link rel="stylesheet" href="/css/style.css"> <!-- link to your public CSS file -->
+</head> <!-- end head -->
+<body> <!-- page body starts -->
+
+  <header style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #e5e7eb;"> <!-- simple top bar with flex layout -->
+    <img src="/img/logo.png" alt="Team Logo" style="height:40px;"> <!-- team logo image (put logo.png in /public/img) -->
+    <h1 style="margin:0;font-size:1.5rem;">Lost &amp; Found Hub</h1> <!-- site name next to logo -->
+    <nav style="margin-left:auto;display:flex;gap:12px;"> <!-- nav pushed to the right -->
+      <a href="/">Home</a> <!-- link to landing page -->
+      <a href="/items">All Listings</a> <!-- link to full table page -->
+      <a href="/items/new">Create Listing</a> <!-- quick access to create form -->
+    </nav> <!-- end nav -->
+  </header> <!-- end header -->
+
+  <main style="padding:16px;"> <!-- main content area with padding -->
+    <%- body %> <!-- EXPRESS-EJS-LAYOUTS placeholder: child view content is injected here -->
+  </main> <!-- end main -->
+
+  <!-- (optional) place scripts here if needed -->
+</body> <!-- end body -->
+</html> <!-- end html -->
