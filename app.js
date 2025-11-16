@@ -4,7 +4,20 @@ const path = require('path');         // handles file paths (used for views + st
 const methodOverride = require('method-override');  // lets forms fake PUT/DELETE requests
 const expressLayouts = require('express-ejs-layouts'); // adds layout support for EJS templates
 
-// --- App
+// --- MongoDB
+require('dotenv').config(); // load environment variables from .env
+const mongoose = require('mongoose'); // MongoDB library
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('✅ Connected to MongoDB Atlas');
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB connection error:', err);
+  });
+
+
+  // --- App
 const app = express(); // make the express app (always do this first)
 
 // --- View engine + layouts
