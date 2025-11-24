@@ -1,0 +1,6 @@
+<h2>Login</h2> <!-- # title of the page so user knows this is the login form -->
+<form method="post" action="/login"> <!-- # form sends data to the /login route using POST when submitted -->
+    <p>Username: <input name="username" required> </p> <!-- # textbox for username, 'required' means user must fill it in --> 
+    <p>Password: <input type="password" name="password" required> </p> <!-- # password field (hides characters) and also required -->
+  <button type="submit">Login</button> <!-- # submit button that actually sends the form to the server -->
+</form>

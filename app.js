@@ -3,6 +3,8 @@ const express = require('express');   // express is the web framework we’re us
 const path = require('path');         // handles file paths (used for views + static files)
 const methodOverride = require('method-override');  // lets forms fake PUT/DELETE requests
 const expressLayouts = require('express-ejs-layouts'); // adds layout support for EJS templates
+const session = require('express-session'); // manage login sessions
+
 
 // --- MongoDB
 require('dotenv').config(); // load environment variables from .env
@@ -20,6 +22,13 @@ mongoose.connect(process.env.MONGO_URI)
   // --- App
 const app = express(); // make the express app (always do this first)
 
+// --- sessions config
+app.use(session({
+  secret: 'supersecretkey',  // replace later with .env secret
+  resave: false,
+  saveUninitialized: false
+}));
+
 // --- View engine + layouts
 app.set('view engine', 'ejs');  // tells express we’re using ejs files
 app.set('views', path.join(__dirname, 'views'));  // sets where the ejs files are stored
@@ -30,6 +39,14 @@ app.set('layout', 'layout');  // tells it to use layout.ejs by default
 app.use(express.urlencoded({ extended: true }));  // lets us read form data from POST requests
 app.use(methodOverride('_method'));  // adds support for PUT or DELETE in forms
 app.use(express.static(path.join(__dirname, 'public')));  // serves CSS/images/JS from public folder
+app.use((req, res, next) => {
+  res.locals.session = req.session;  // share session across all views
+  next();
+});
+function isAuthenticated(req, res, next) {
+  if (req.session.user) return next();  // allow if logged in
+  res.redirect('/login');               // otherwise go to login
+}
 
 // --- In-memory "database"
 let items = [  // just a fake db that stores stuff in memory for now
@@ -45,6 +62,11 @@ const nextId = () => (items.length ? Math.max(...items.map(i => i.id)) + 1 : 1);
 app.get('/', (req, res) => {  // main page route
   res.render('index', { items });  // loads index.ejs and passes the items array
 });
+
+// Connects all login, register, and logout routes to the main Express app so pages actually work
+const authRoutes = require('./routes/authRoutes');
+app.use('/', authRoutes);     // mounts /login, /register, /logout
+
 
 // List page (optional separate)
 app.get('/items', (req, res) => {  // second page for all items
@@ -71,7 +93,7 @@ app.get('/items/:id/edit', (req, res) => {  // page for editing a specific item
 });
 
 // Update item
-app.put('/items/:id', (req, res) => {  // when edit form gets submitted
+app.put('/items/:id', isAuthenticated, (req, res) => {  // when edit form gets submitted
   const id = Number(req.params.id);  // grab id from URL
   const idx = items.findIndex(i => i.id === id);  // find its index
   if (idx === -1) return res.status(404).send('Not found');  // handle invalid id
@@ -81,7 +103,7 @@ app.put('/items/:id', (req, res) => {  // when edit form gets submitted
 });
 
 // Delete item
-app.delete('/items/:id', (req, res) => {  // deletes an item by id
+app.delete('/items/:id', isAuthenticated, (req, res) => {  // deletes an item by id
   items = items.filter(i => i.id !== Number(req.params.id));  // remove that item from array
   res.redirect('/');  // redirect home after deleting
 });

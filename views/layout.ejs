@@ -12,10 +12,17 @@
     <img src="/img/project-logo.png" alt="Team Logo" style="height:40px;"> <!-- team logo image (put project-logo.png in /public/img) -->
     <h1 style="margin:0;font-size:1.5rem;">Lost &amp; Found Hub</h1> <!-- site name next to logo -->
     <nav style="margin-left:auto;display:flex;gap:12px;"> <!-- nav pushed to the right -->
-      <a href="/">Home</a> <!-- link to landing page -->
-      <a href="/items">All Listings</a> <!-- link to full table page -->
-      <a href="/items/new">Create Listing</a> <!-- quick access to create form -->
-    </nav> <!-- end nav -->
+  <% if (!session || !session.user) { %> <!-- user is NOT logged in -->
+    <a href="/login">Login</a> <!-- link to login page -->
+    <a href="/register">Register</a> <!-- link to register page -->
+  <% } else { %> <!-- user IS logged in -->
+    <a href="/">Home</a> <!-- normal site links only visible when logged in -->
+    <a href="/items">All Listings</a>
+    <a href="/items/new">Create Listing</a>
+    <a href="/logout">Logout</a> <!-- logout link replaces login/register -->
+  <% } %>
+</nav> <!-- end nav -->
+
   </header> <!-- end header -->
 
   <main style="padding:16px;"> <!-- main content area with padding -->
