@@ -102,3 +102,127 @@ a.cancel-link {
 a.cancel-link:hover {
   text-decoration: underline;
 }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table th {
+  background: #e0e7ff;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #c7d2fe;
+}
+
+table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+table tr:hover {
+  background: #f3f4f6;
+}
+
+/* Table buttons */
+table a {
+  text-decoration: none;
+  margin-right: 6px;
+}
+
+/* Table buttons - unified styling */
+table a.edit-btn,
+table form button.delete-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+  color: white;
+  margin-right: 6px;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+/* Edit button */
+table a.edit-btn {
+  background: #10b981; /* green */
+}
+
+table a.edit-btn:hover {
+  background: #059669;
+}
+
+/* Delete button */
+table form button.delete-btn {
+  background: #ef4444; /* red */
+}
+
+table form button.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* Styling for delete buttons */
+table form {
+  display: inline; 
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+/* Forms */
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+form p {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 4px rgba(99,102,241,0.4);
+}
+
+/* Page Titles */
+h2, h3 {
+  margin-bottom: 16px;
+}
+
+/* Margins */
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 16px; }
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 16px; }
