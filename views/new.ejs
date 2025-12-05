@@ -1,34 +1,34 @@
-<h2 style="margin-top:0;">Create New Listing</h2> <!-- form page heading -->
+<h2>Create New Listing</h2> <!-- form page heading -->
 
-<form method="post" action="/items" style="max-width:520px;"> <!-- POST to /items creates new item -->
+<form method="post" action="/items"> <!-- POST to /items creates new item -->
   <p> <!-- field wrapper -->
     <label for="name">Name</label> <!-- label for name -->
-    <input id="name" name="name" required style="width:100%;"> <!-- text input, required -->
+    <input id="name" name="name" required> <!-- text input, required -->
   </p> <!-- end field -->
 
   <p> <!-- field -->
     <label for="desc">Description</label> <!-- label for description -->
-    <input id="desc" name="desc" required style="width:100%;"> <!-- text input for description -->
+    <input id="desc" name="desc" required> <!-- text input for description -->
   </p> <!-- end field -->
 
   <p> <!-- field -->
     <label for="date">Date</label> <!-- label for date -->
-    <input id="date" type="date" name="date" required style="width:100%;"> <!-- date input -->
+    <input id="date" type="date" name="date" required> <!-- date input -->
   </p> <!-- end field -->
 
   <p> <!-- field -->
     <label for="place">Location</label> <!-- label for location -->
-    <input id="place" name="place" required style="width:100%;"> <!-- text input for location -->
+    <input id="place" name="place" required> <!-- text input for location -->
   </p> <!-- end field -->
 
   <p> <!-- field -->
     <label for="type">Type</label> <!-- label for type -->
-    <select id="type" name="type" style="width:100%;"> <!-- dropdown for Lost/Found -->
+    <select id="type" name="type"> <!-- dropdown for Lost/Found -->
       <option>Lost</option> <!-- option value Lost -->
       <option>Found</option> <!-- option value Found -->
     </select> <!-- end select -->
   </p> <!-- end field -->
 
   <button type="submit">Save</button> <!-- submit button to create item -->
-  <a href="/" style="margin-left:8px;">Cancel</a> <!-- link back without saving -->
+  <a href="/" class="cancel-link">Cancel</a> <!-- link back without saving -->
 </form> <!-- end form -->

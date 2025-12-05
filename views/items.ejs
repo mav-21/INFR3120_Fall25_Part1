@@ -1,10 +1,10 @@
-<h2 style="margin-top:0;">All Listings</h2> <!-- page heading -->
+<h2>All Listings</h2> <!-- page heading -->
 
-<p style="margin-bottom:12px;">
-  <a href="/items/new">+ Create Listing</a>
+<p>
+  <a href="/items/new" class="btn">+ Create Listing</a>
 </p> <!-- quick link to creation form -->
 
-<table border="1" cellpadding="6" cellspacing="0" style="width:100%;border-collapse:collapse;"> <!-- table identical to landing -->
+<table> <!-- table identical to landing -->
   <thead> <!-- header -->
     <tr> <!-- header row -->
       <th>Name</th> <!-- name col -->
@@ -24,9 +24,9 @@
         <td><%= i.place %></td> <!-- show place -->
         <td><%= i.type %></td> <!-- show type -->
         <td> <!-- actions -->
-          <a href="/items/<%= i.id %>/edit">Edit</a> <!-- edit link -->
-          <form action="/items/<%= i.id %>?_method=DELETE" method="post" style="display:inline;margin-left:6px;"> <!-- delete form -->
-            <button type="submit">Delete</button> <!-- delete button -->
+          <a href="/items/<%= i.id %>/edit" class="edit-btn">Edit</a> <!-- edit link -->
+          <form action="/items/<%= i.id %>?_method=DELETE" method="post" style="display:inline;"> <!-- delete form -->
+            <button type="submit" class="delete-btn">Delete</button> <!-- delete button -->
           </form> <!-- end form -->
         </td> <!-- end actions -->
       </tr> <!-- end row -->

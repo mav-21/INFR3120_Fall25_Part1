@@ -1,34 +1,34 @@
-<h2 style="margin-top:0;">Edit Listing</h2> <!-- page heading -->
+<h2>Edit Listing</h2> <!-- page heading -->
 
-<form method="post" action="/items/<%= item.id %>?_method=PUT" style="max-width:520px;"> <!-- submit as PUT via method-override -->
+<form method="post" action="/items/<%= item.id %>?_method=PUT"> <!-- submit as PUT via method-override -->
   <p> <!-- field -->
     <label for="name">Name</label> <!-- label -->
-    <input id="name" name="name" value="<%= item.name %>" required style="width:100%;"> <!-- prefilled name -->
+    <input id="name" name="name" value="<%= item.name %>""> <!-- prefilled name -->
   </p> <!-- end field -->
 
   <p> <!-- field -->
     <label for="desc">Description</label> <!-- label -->
-    <input id="desc" name="desc" value="<%= item.desc %>" required style="width:100%;"> <!-- prefilled description -->
+    <input id="desc" name="desc" value="<%= item.desc %>"> <!-- prefilled description -->
   </p> <!-- end field -->
 
   <p> <!-- field -->
     <label for="date">Date</label> <!-- label -->
-    <input id="date" type="date" name="date" value="<%= item.date %>" required style="width:100%;"> <!-- prefilled date -->
+    <input id="date" type="date" name="date" value="<%= item.date %>" required> <!-- prefilled date -->
   </p> <!-- end field -->
 
   <p> <!-- field -->
     <label for="place">Location</label> <!-- label -->
-    <input id="place" name="place" value="<%= item.place %>" required style="width:100%;"> <!-- prefilled location -->
+    <input id="place" name="place" value="<%= item.place %>" required> <!-- prefilled location -->
   </p> <!-- end field -->
 
   <p> <!-- field -->
     <label for="type">Type</label> <!-- label -->
-    <select id="type" name="type" style="width:100%;"> <!-- dropdown -->
+    <select id="type" name="type"> <!-- dropdown -->
       <option <%= item.type === 'Lost' ? 'selected' : '' %> >Lost</option> <!-- select Lost if current value is Lost -->
       <option <%= item.type === 'Found' ? 'selected' : '' %> >Found</option> <!-- select Found if current value is Found -->
     </select> <!-- end select -->
   </p> <!-- end field -->
 
   <button type="submit">Update</button> <!-- submit update -->
-  <a href="/" style="margin-left:8px;">Cancel</a> <!-- back without updating -->
+  <a href="/" class="cancel-link">Cancel</a> <!-- back without updating -->
 </form> <!-- end form -->
